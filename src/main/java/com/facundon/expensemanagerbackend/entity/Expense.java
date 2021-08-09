@@ -30,7 +30,7 @@ public class Expense {
    private Category category;
 
    @Enumerated(EnumType.STRING)
-   private Interval interval;
+   private Interval paymentInterval;
 
    private int monthsLeft;
 }

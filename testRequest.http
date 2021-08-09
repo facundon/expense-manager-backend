@@ -1,0 +1,12 @@
+GET http://localhost:8000/expenses HTTP/1.1
+
+POST http://localhost:8000/addExpense
+content-type: application/json
+
+{
+    "value": 7400.63,
+    "concept": "Seguro",
+    "category": "Auto",
+    "paymentInterval": "Mensual",
+    "monthsLeft": 2
+}
