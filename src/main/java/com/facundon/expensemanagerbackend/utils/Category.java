@@ -1,5 +1,5 @@
 package com.facundon.expensemanagerbackend.utils;
 
 public enum Category {
-   Auto, Salud, Viajes, Otros
+   Vehicle, Health, Travels, Sports, Other
 }

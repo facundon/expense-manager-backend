@@ -1,5 +1,8 @@
 package com.facundon.expensemanagerbackend.entity;
 
+import java.text.DateFormat;
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -7,7 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import com.facundon.expensemanagerbackend.utils.Category;
-import com.facundon.expensemanagerbackend.utils.Interval;
+import com.facundon.expensemanagerbackend.utils.Kind;
+import com.facundon.expensemanagerbackend.utils.Months;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,7 +34,10 @@ public class Expense {
    private Category category;
 
    @Enumerated(EnumType.STRING)
-   private Interval paymentInterval;
+   private Kind kind;
 
-   private int monthsLeft;
+   private LocalDate risedAt;
+
+   @Enumerated(EnumType.STRING)
+   private Months repeatMonth;
 }

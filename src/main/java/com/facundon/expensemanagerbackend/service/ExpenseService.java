@@ -1,5 +1,8 @@
 package com.facundon.expensemanagerbackend.service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import com.facundon.expensemanagerbackend.entity.Expense;
@@ -30,11 +33,21 @@ public class ExpenseService {
       return "removed" + id;
    }
 
+   private LocalDate getTodayDate() {
+      ZoneId zone = ZoneId.of("America/Argentina/Buenos_Aires");
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy"); 
+      LocalDate today = LocalDate.now(zone);
+      today.format(formatter);
+      return today;
+   }
+
    public Expense updateExpense(Expense newExpense) {
       Expense existingExpense = repository.findById(newExpense.getId()).orElse(null);
       existingExpense.setConcept(newExpense.getConcept());
       existingExpense.setValue(newExpense.getValue());
       existingExpense.setCategory(newExpense.getCategory());
+      LocalDate today = getTodayDate();
+      existingExpense.setRisedAt(today);
       return repository.save(existingExpense);
    }
  }
