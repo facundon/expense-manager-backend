@@ -1,12 +1,11 @@
 package com.facundon.expensemanagerbackend.service;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import com.facundon.expensemanagerbackend.entity.Expense;
 import com.facundon.expensemanagerbackend.repository.ExpenseRepository;
+import com.facundon.expensemanagerbackend.utils.DateUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,15 +29,7 @@ public class ExpenseService {
 
    public String deleteExpense(int id) {
       repository.deleteById(id);
-      return "removed" + id;
-   }
-
-   private LocalDate getTodayDate() {
-      ZoneId zone = ZoneId.of("America/Argentina/Buenos_Aires");
-      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy"); 
-      LocalDate today = LocalDate.now(zone);
-      today.format(formatter);
-      return today;
+      return "deleted" + id;
    }
 
    public Expense updateExpense(Expense newExpense) {
@@ -46,7 +37,7 @@ public class ExpenseService {
       existingExpense.setConcept(newExpense.getConcept());
       existingExpense.setValue(newExpense.getValue());
       existingExpense.setCategory(newExpense.getCategory());
-      LocalDate today = getTodayDate();
+      LocalDate today = DateUtils.getTodayDate();
       existingExpense.setRisedAt(today);
       return repository.save(existingExpense);
    }

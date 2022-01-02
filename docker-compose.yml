@@ -9,5 +9,5 @@ services:
       volumes:
          - ./mysql_db:/var/lib/mysql
       environment:
-         MYSQL_ROOT_PASSWORD: Tesla1234
-         MYSQL_DATABASE: expense-manager-db
+         MYSQL_ROOT_PASSWORD: admin1234
+         MYSQL_DATABASE: expense_manager_db
